@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use App\Category;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +13,9 @@ class ArticleController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return response()->json(Article::paginate($request->input('per_page', 15)));
+        return response()->json([Category::all()]);
     }
 
     /**
