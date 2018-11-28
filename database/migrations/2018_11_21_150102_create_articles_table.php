@@ -16,7 +16,10 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('cover')->default('');
             $table->text('content');
+            $table->unsignedTinyInteger('order')->after('content');
+            $table->boolean('status');
             $table->unsignedInteger('user_id');
             $table->timestamps();
         });

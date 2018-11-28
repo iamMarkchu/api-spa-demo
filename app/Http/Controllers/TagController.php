@@ -2,11 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTagRequest;
+use App\Repositories\TagRepository;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
+
+    /**
+     * @var TagRepository
+     */
+    private $tag;
+
+    public function __construct(TagRepository $tag)
+    {
+
+        $this->tag = $tag;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,9 +37,15 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTagRequest $request)
     {
-        //
+        $data = [
+            'name' => $request->input('name'),
+            'order' => $request->input('order'),
+            'status' => true,
+            'user_id' => Auth::id()
+        ];
+        return response()->api($this->tag->create($data), '保存标签');
     }
 
     /**
@@ -36,7 +56,7 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->api($this->tag->withUserById($id), '获取标签');
     }
 
     /**
@@ -48,7 +68,7 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return response()->api($this->tag->update($request->all(), $id), '修改标签');
     }
 
     /**
@@ -59,6 +79,11 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return response()->api($this->tag->del($id), '删除标签');
+    }
+
+    public function all()
+    {
+        return response()->api($this->tag->all(), '获取所有标签');
     }
 }
