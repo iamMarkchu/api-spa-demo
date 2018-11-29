@@ -22,7 +22,6 @@ class ArticleController extends Controller
      */
     public function __construct(ArticleRepository $article)
     {
-
         $this->article = $article;
     }
     /**

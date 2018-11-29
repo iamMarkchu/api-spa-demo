@@ -29,3 +29,8 @@ Route::post('login', 'Auth\LoginController@login');
 
 // Upload
 \LaravelUploader::routes();
+
+// System Config
+
+Route::resource('configs', 'SystemConfigController')->middleware('auth:api');
+Route::get('/configs-all', 'SystemConfigController@all');
