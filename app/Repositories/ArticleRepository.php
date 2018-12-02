@@ -11,6 +11,7 @@ namespace App\Repositories;
 
 use App\Article;
 use App\Category;
+use App\Helpers\MarkdownHelper;
 use App\Tag;
 use Qiniu\Auth;
 
@@ -64,7 +65,9 @@ class ArticleRepository
 
     public function byId(int $id)
     {
-        return Article::with(['tags', 'categories', 'user'])->find($id);
+        $article = Article::with(['tags', 'categories', 'user'])->find($id);
+        $article->menus = (new MarkdownHelper())->generateMenus($article->content);
+        return $article;
     }
 
     public function update(array $data, int $id)

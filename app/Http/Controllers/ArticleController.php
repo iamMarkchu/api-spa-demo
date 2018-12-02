@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Helpers\MarkdownHelper;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Repositories\ArticleRepository;
@@ -45,8 +46,8 @@ class ArticleController extends Controller
     {
         $data = [
             'title' => $request->input('title'),
-            'content' => $request->input('content'),
             'cover' => $request->input('cover', ' '),
+            'content' => $request->input('content'),
             'order' => $request->input('order'),
             'tags' => $request->input('tags'),
             'categories' => $request->input('categories'),
@@ -78,8 +79,8 @@ class ArticleController extends Controller
     {
         $data = [
             'title' => $request->input('title'),
-            'content' => $request->input('content'),
             'cover' => $request->input('cover', ' '),
+            'content' => $request->input('content'),
             'order' => $request->input('order'),
             'tags' => $request->input('tags'),
             'categories' => $request->input('categories'),
