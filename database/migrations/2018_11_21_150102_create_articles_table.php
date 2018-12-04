@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('cover')->default('');
             $table->text('content');
-            $table->unsignedTinyInteger('order')->after('content');
+            $table->unsignedTinyInteger('order');
             $table->boolean('status');
             $table->unsignedInteger('user_id');
             $table->timestamps();
