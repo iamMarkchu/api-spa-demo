@@ -18,9 +18,9 @@ class TagController extends Controller
 
     public function __construct(TagRepository $tag)
     {
-
         $this->tag = $tag;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +34,7 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StoreTagRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreTagRequest $request)
@@ -51,7 +51,7 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -62,8 +62,8 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -74,7 +74,7 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -82,6 +82,10 @@ class TagController extends Controller
         return response()->api($this->tag->del($id), '删除标签');
     }
 
+    /**
+     * 获取所有标签
+     * @return \Illuminate\Http\Response
+     */
     public function all()
     {
         return response()->api($this->tag->all(), '获取所有标签');
