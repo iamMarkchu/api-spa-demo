@@ -31,7 +31,6 @@ class UpdateArticleRequest extends FormRequest
                 'max:255',
                 Rule::unique('articles')->ignore($this->route('article')),
             ],
-            //'title' => 'required|unique:articles|min:3|max:255',
             'content' => 'required',
             'order' => 'required|integer',
             'tags' => 'array',

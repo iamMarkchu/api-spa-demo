@@ -46,7 +46,7 @@ class ArticleController extends Controller
     {
         $data = [
             'title' => $request->input('title'),
-            'cover' => $request->input('cover', ' '),
+            'cover' => $request->input('cover', ''),
             'content' => $request->input('content'),
             'order' => $request->input('order'),
             'tags' => $request->input('tags'),
